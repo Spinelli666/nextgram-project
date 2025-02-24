@@ -38,7 +38,7 @@ const Navbar = async () => {
               href={'/post/new'}
               className="text-white font-medium hover:text-zinc-200"
               >
-                Criar postegame
+                Criar postagem
             </Link>
             <Link 
               href={'/my-posts'}
