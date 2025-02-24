@@ -1,3 +1,4 @@
+import { getUserByEmail } from "@/actions"
 import { auth, signIn, signOut } from "auth"
 import Link from "next/link"
 
@@ -5,15 +6,16 @@ const Navbar = async () => {
 
     const session = await auth()
 
+    const user = await getUserByEmail(session?.user.email)
+
   return (
-    <div className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      <Link href='/' className="text-white text-lg font-bold">Home</Link>
+    <div className="bg-gray-800 text-white px-10 py-5 flex justify-between items-center">
+      <Link href='/' className="text-white hover:text-zinc-200 text-lg font-bold">NextGram</Link>
       <div>
-        {session && session.user ? (
+        {user ? (
           // logado
           <div className="flex gap-4 items-center">
-            {/* login social => name, email, image */}
-            <p>{session.user.name}</p>
+            <p>{user.name}</p>
             <form action={async () => {
                 'use server'
                 await signOut()
